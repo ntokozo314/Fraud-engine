@@ -1,0 +1,12 @@
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/FraudEngineApplication.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/controller/PaymentController.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/AbstractRuleData.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/accountdrain/AccountDrainEvaluator.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/accountdrain/iAccountDrain.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/accountdrain/repository/AccountInformation.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/accountdrain/repository/AccountRepository.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/badbeneficiary/BadBeneficiaryEvaluator.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/badbeneficiary/iBadBeneficiary.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/badbeneficiary/repository/BadBeneficiaryRepository.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/badbeneficiary/repository/BeneficiaryData.java
+/Users/ntokozomngadi/projects/Fraud-engine/src/main/java/com/example/fraudEngine/evaluator/iEvaluator.java
