@@ -17,7 +17,8 @@ public class PaymentService {
 
     public void onceOffPayment(OnceOffPayment payment) {
         try {
-            fraudService.validateTransaction(List.of(payment.getTransaction()), PaymentTypes.ONCE_OFF);
+            payment.getTransaction().setPaymentType(PaymentTypes.ONCE_OFF);
+            fraudService.validateTransaction(List.of(payment.getTransaction()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -25,7 +26,8 @@ public class PaymentService {
 
     public void beneficiaryPayment(@Valid BeneficiaryPayment payment) {
         try {
-            fraudService.validateTransaction(List.of(payment.getTransaction()), PaymentTypes.BENEFICIARY);
+            payment.getTransaction().setPaymentType(PaymentTypes.BENEFICIARY);
+            fraudService.validateTransaction(List.of(payment.getTransaction()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
