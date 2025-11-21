@@ -2,7 +2,7 @@ package com.example.fraudEngine.controller.model;
 
 import com.example.fraudEngine.evaluator.accountdrain.iAccountDrain;
 import com.example.fraudEngine.evaluator.badbeneficiary.iBadBeneficiary;
-import com.example.fraudEngine.frauddb.repository.BeneficiaryEntity;
+import com.example.fraudEngine.frauddb.entity.BadBeneficiaryEntity;
 import lombok.Data;
 
 
@@ -14,10 +14,11 @@ public class Transaction implements iBadBeneficiary, iAccountDrain {
     private BigDecimal amount;
     private String branchCode;
     private String beneficiaryAccount;
+    private PaymentTypes paymentType;
 
     @Override
-    public BeneficiaryEntity getBeneficiaryData() {
-        return BeneficiaryEntity.builder()
+    public BadBeneficiaryEntity getBeneficiaryData() {
+        return BadBeneficiaryEntity.builder()
                 .branchCode(branchCode)
                 .accountNumber(beneficiaryAccount)
                 .build();

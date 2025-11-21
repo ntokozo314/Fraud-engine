@@ -1,11 +1,12 @@
 package com.example.fraudEngine.frauddb.repository;
 
+import com.example.fraudEngine.frauddb.entity.BadBeneficiaryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface BadBeneficiaryRepository extends JpaRepository <BeneficiaryEntity, UUID> {
+public interface BadBeneficiaryRepository extends JpaRepository <BadBeneficiaryEntity, UUID> {
 
-    Optional<BeneficiaryEntity> findByAccountNumberAndBranchCode(String accountNumber, String branchCode);
+    Optional<BadBeneficiaryEntity> findByAccountNumberAndBranchCode(String accountNumber, String branchCode);
 }

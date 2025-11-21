@@ -1,4 +1,4 @@
-package com.example.fraudEngine.frauddb.repository;
+package com.example.fraudEngine.frauddb.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BeneficiaryEntity {
+public class BadBeneficiaryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

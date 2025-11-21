@@ -1,7 +1,7 @@
 package com.example.fraudEngine.evaluator.badbeneficiary;
 
-import com.example.fraudEngine.frauddb.repository.BeneficiaryEntity;
+import com.example.fraudEngine.frauddb.entity.BadBeneficiaryEntity;
 
 public interface iBadBeneficiary {
-    BeneficiaryEntity getBeneficiaryData();
+    BadBeneficiaryEntity getBeneficiaryData();
 }
