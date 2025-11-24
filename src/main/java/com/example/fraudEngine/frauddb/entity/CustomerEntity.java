@@ -8,16 +8,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "bad_beneficiary")
+@Table(name = "customer")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BadBeneficiaryEntity {
-
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    private String branchCode;
-    private String accountNumber;
+    private UUID customerId;
+    private String userName;
 }

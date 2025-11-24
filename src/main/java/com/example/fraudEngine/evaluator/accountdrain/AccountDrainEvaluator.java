@@ -3,7 +3,7 @@ package com.example.fraudEngine.evaluator.accountdrain;
 import com.example.fraudEngine.controller.model.Transaction;
 import com.example.fraudEngine.evaluator.iEvaluator;
 import com.example.fraudEngine.frauddb.entity.TransactionEvaluationEntity;
-import com.example.fraudEngine.userdb.repository.AccountInformation;
+import com.example.fraudEngine.userdb.entity.AccountInformation;
 import com.example.fraudEngine.userdb.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

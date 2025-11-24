@@ -61,7 +61,7 @@ public class FraudService {
 
         TransactionEntity transactionEntity = TransactionEntity.builder()
                 .sourceAccount(transaction.getSourceAccountNumber())
-                .balance(transaction.getAmount())
+                .amount(transaction.getAmount())
                 .branchCode(transaction.getBranchCode())
                 .accountNumber(transaction.getBeneficiaryAccount())
                 .riskScore( riskScore)
@@ -72,6 +72,8 @@ public class FraudService {
         transactionRepository.save(transactionEntity);
         log.info("Successfully saved transaction Risk score for transaction");
     }
+
+
 }
 
 

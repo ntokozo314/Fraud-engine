@@ -20,8 +20,9 @@ public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID transactionId;
+    private UUID customerId;
     private String sourceAccount;
-    private BigDecimal balance;
+    private BigDecimal amount;
     private String branchCode;
     private String accountNumber;
     private int riskScore;
