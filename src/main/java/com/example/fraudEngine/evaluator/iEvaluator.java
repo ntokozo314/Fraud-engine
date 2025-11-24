@@ -1,7 +1,7 @@
 package com.example.fraudEngine.evaluator;
 
 import com.example.fraudEngine.controller.model.Transaction;
-import com.example.fraudEngine.frauddb.entity.TransactionEvaluationEntity;
+import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
 import org.springframework.beans.factory.BeanNameAware;
 
 import java.util.Map;

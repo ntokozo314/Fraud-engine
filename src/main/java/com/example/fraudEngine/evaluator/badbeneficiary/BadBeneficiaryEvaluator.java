@@ -1,9 +1,9 @@
 package com.example.fraudEngine.evaluator.badbeneficiary;
 
 import com.example.fraudEngine.controller.model.Transaction;
-import com.example.fraudEngine.frauddb.entity.TransactionEvaluationEntity;
-import com.example.fraudEngine.frauddb.repository.BadBeneficiaryRepository;
-import com.example.fraudEngine.frauddb.entity.BadBeneficiaryEntity;
+import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
+import com.example.fraudEngine.persistence.frauddb.repository.BadBeneficiaryRepository;
+import com.example.fraudEngine.persistence.frauddb.entity.BadBeneficiaryEntity;
 import com.example.fraudEngine.evaluator.iEvaluator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

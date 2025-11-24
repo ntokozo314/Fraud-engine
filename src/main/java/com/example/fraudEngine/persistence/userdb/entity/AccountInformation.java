@@ -1,4 +1,4 @@
-package com.example.fraudEngine.userdb.entity;
+package com.example.fraudEngine.persistence.userdb.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

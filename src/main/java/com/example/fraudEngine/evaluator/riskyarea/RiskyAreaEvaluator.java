@@ -3,9 +3,9 @@ package com.example.fraudEngine.evaluator.riskyarea;
 
 import com.example.fraudEngine.controller.model.Transaction;
 import com.example.fraudEngine.evaluator.iEvaluator;
-import com.example.fraudEngine.frauddb.entity.RiskyAreaEntity;
-import com.example.fraudEngine.frauddb.entity.TransactionEvaluationEntity;
-import com.example.fraudEngine.frauddb.repository.RiskyAreaRepository;
+import com.example.fraudEngine.persistence.frauddb.entity.RiskyAreaEntity;
+import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
+import com.example.fraudEngine.persistence.frauddb.repository.RiskyAreaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanNameAware;

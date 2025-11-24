@@ -1,6 +1,6 @@
-package com.example.fraudEngine.userdb.repository;
+package com.example.fraudEngine.persistence.userdb.repository;
 
-import com.example.fraudEngine.userdb.entity.AccountInformation;
+import com.example.fraudEngine.persistence.userdb.entity.AccountInformation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

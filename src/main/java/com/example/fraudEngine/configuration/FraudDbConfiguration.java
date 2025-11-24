@@ -21,7 +21,7 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "com.example.fraudEngine.frauddb",
+        basePackages = "com.example.fraudEngine.persistence.frauddb",
         entityManagerFactoryRef = "fraudEntityManagerFactory",
         transactionManagerRef = "fraudTransactionManager"
 )
@@ -56,7 +56,7 @@ public class FraudDbConfiguration {
 
         return builder
                 .dataSource(dataSource)
-                .packages("com.example.fraudEngine.frauddb")
+                .packages("com.example.fraudEngine.persistence.frauddb")
                 .persistenceUnit("frauddb")
                 .properties(properties)
                 .build();

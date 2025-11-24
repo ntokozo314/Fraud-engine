@@ -2,7 +2,7 @@ package com.example.fraudEngine.controller.model;
 
 import com.example.fraudEngine.evaluator.accountdrain.iAccountDrain;
 import com.example.fraudEngine.evaluator.badbeneficiary.iBadBeneficiary;
-import com.example.fraudEngine.frauddb.entity.BadBeneficiaryEntity;
+import com.example.fraudEngine.persistence.frauddb.entity.BadBeneficiaryEntity;
 import lombok.Data;
 
 

@@ -1,4 +1,4 @@
-package com.example.fraudEngine.frauddb.entity;
+package com.example.fraudEngine.persistence.frauddb.entity;
 
 import com.example.fraudEngine.controller.model.PaymentTypes;
 import jakarta.persistence.*;
