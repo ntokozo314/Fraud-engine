@@ -3,23 +3,21 @@ package com.example.fraudEngine.persistence.frauddb.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "customer")
+@Table(name = "customer_device")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerEntity {
+public class DeviceEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private UUID customerId;
-    private String userName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
-    private List<TransactionEntity> transactions;
+    //Device info
 }

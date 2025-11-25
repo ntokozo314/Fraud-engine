@@ -16,6 +16,14 @@ public class FingerPrintingEvaluator implements iEvaluator {
     @Override
     public void isPossibleFraud(Transaction transactionData, Map<String, TransactionEvaluationEntity> evaluations) {
 
+        /*
+
+        if new device for account, risk score
+        if changed device, risk score
+        if same device,  risk score
+
+        get last transaction (source account, deviceId) , if it's the same, risk score. else check if combo exists
+         */
     }
 
     @Override
