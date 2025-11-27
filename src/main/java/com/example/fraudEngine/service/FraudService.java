@@ -7,15 +7,15 @@ import com.example.fraudEngine.evaluator.iEvaluator;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
 import com.example.fraudEngine.persistence.frauddb.repository.TransactionRepository;
+import com.example.fraudEngine.persistence.userdb.entity.DeviceEntity;
+import com.example.fraudEngine.persistence.userdb.repository.DeviceRepository;
+import com.example.fraudEngine.utils.UserContext;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -26,6 +26,9 @@ public class FraudService {
     private final Map<PaymentTypes, List<iEvaluator>> fraudPipelines;
     private final EvaluationProperties evaluationProperties;
     private final TransactionRepository transactionRepository;
+    private final DeviceRepository deviceRepository;
+    private final UserContext userContext;
+
 
     @PostConstruct
     private void buildTransactionPipelines() {
@@ -52,8 +55,10 @@ public class FraudService {
     }
 
     private void calculateAndSaveRiskScore(Transaction transaction, Map<String, TransactionEvaluationEntity> transactionEvaluations) {
-        //Make it weighted and configurable
+        validateActiveDevice();
+
         int riskScore = 0;
+        //Make it weighted and configurable
         for (TransactionEvaluationEntity transactionEvaluationEntity : transactionEvaluations.values()) {
             riskScore += transactionEvaluationEntity.getRiskScore();
         }
@@ -62,6 +67,7 @@ public class FraudService {
         TransactionEntity transactionEntity = TransactionEntity.builder()
                 .sourceAccount(transaction.getSourceAccountNumber())
                 .amount(transaction.getAmount())
+                .deviceId(userContext.getDeviceId())
                 .branchCode(transaction.getBranchCode())
                 .accountNumber(transaction.getBeneficiaryAccount())
                 .riskScore( riskScore)
@@ -71,6 +77,17 @@ public class FraudService {
 
         transactionRepository.save(transactionEntity);
         log.info("Successfully saved transaction Risk score for transaction");
+    }
+
+    private void validateActiveDevice() {
+        Optional<DeviceEntity> deviceEntity = deviceRepository.findByCustomerIdAndActiveDeviceIsTrue(userContext.getCustomerId());
+        if (deviceEntity.isEmpty()) {
+            throw new RuntimeException("no active Device found for user");
+        }
+
+        if (deviceEntity.get().getId() != userContext.getDeviceId()) {
+            throw new RuntimeException("no active Device found for user");
+        }
     }
 
 

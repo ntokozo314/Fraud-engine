@@ -1,13 +1,12 @@
 package com.example.fraudEngine.evaluator.accountdrain;
 
 import com.example.fraudEngine.controller.model.Transaction;
-import com.example.fraudEngine.evaluator.iEvaluator;
+import com.example.fraudEngine.evaluator.AbstractEvaluator;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
 import com.example.fraudEngine.persistence.userdb.entity.AccountInformation;
 import com.example.fraudEngine.persistence.userdb.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Service;
 
 import java.math.RoundingMode;
@@ -18,16 +17,10 @@ import java.util.Optional;
 @Slf4j
 @Service("ACCOUNT_DRAIN")
 @RequiredArgsConstructor
-public class AccountDrainEvaluator implements iEvaluator, BeanNameAware {
+public class AccountDrainEvaluator extends AbstractEvaluator {
 
     private final AccountRepository accountRepository;
     private final float amountThreshold = 0.8F;
-    private String beanName;
-
-    @Override
-    public void setBeanName(String name) {
-        beanName = name;
-    }
 
     @Override
     public void isPossibleFraud(Transaction data, Map<String, TransactionEvaluationEntity> evaluations) {

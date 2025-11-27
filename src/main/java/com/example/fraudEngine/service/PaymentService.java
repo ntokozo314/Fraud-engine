@@ -28,6 +28,7 @@ public class PaymentService {
         try {
             payment.getTransaction().setPaymentType(PaymentTypes.BENEFICIARY);
             fraudService.validateTransaction(List.of(payment.getTransaction()));
+            //Mock out payment
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

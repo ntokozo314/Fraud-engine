@@ -1,8 +1,8 @@
 package com.example.fraudEngine.evaluator.transactionvelocity;
 
 import com.example.fraudEngine.controller.model.Transaction;
+import com.example.fraudEngine.evaluator.AbstractEvaluator;
 import com.example.fraudEngine.evaluator.EvaluatorErrorCodes;
-import com.example.fraudEngine.evaluator.iEvaluator;
 import com.example.fraudEngine.persistence.frauddb.entity.CustomerEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
@@ -25,9 +25,8 @@ import java.util.Optional;
 @Slf4j
 @Service("TRANSACTION_VELOCITY")
 @RequiredArgsConstructor
-public class TransactionVelocityEvaluator implements iEvaluator { // %/min
+public class TransactionVelocityEvaluator extends AbstractEvaluator { // %/min
 
-    private String beanName;
     private final CustomerRepository customerRepository;
     private final TransactionRepository transactionRepository;
     private final AccountRepository accountRepository;
@@ -85,9 +84,4 @@ public class TransactionVelocityEvaluator implements iEvaluator { // %/min
         evaluations.put(beanName, evaluationEntity);
     }
 
-    // AbstractEvaluator...
-    @Override
-    public void setBeanName(String name) {
-        beanName = name;
-    }
 }

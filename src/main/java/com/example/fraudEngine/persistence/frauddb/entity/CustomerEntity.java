@@ -18,6 +18,7 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID customerId;
     private String userName;
+    private String nationalId;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")

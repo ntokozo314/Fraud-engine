@@ -4,3 +4,11 @@ CREATE TABLE account(
     account_number VARCHAR(50) NOT NULL,
     balance DECIMAL NOT NULL
 );
+
+
+CREATE TABLE customer_device (
+    id UUID PRIMARY KEY,
+    customer_id UUID,
+    active_device BOOLEAN,
+    created_at TIMESTAMP NOT NULL,
+);

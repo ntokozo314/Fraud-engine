@@ -11,3 +11,9 @@ public interface iEvaluator extends BeanNameAware {
 
     void isPossibleFraud(Transaction transactionData, Map<String, TransactionEvaluationEntity> evaluations);
 }
+
+/*
+Clean up Evaluators.
+    configuratble threshold
+    absstract Evaluator
+ */
