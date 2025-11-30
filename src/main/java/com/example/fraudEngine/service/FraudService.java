@@ -46,7 +46,7 @@ public class FraudService {
     public void validateTransaction(List<Transaction> transactions) {
         List<iEvaluator> evaluatorsList = fraudPipelines.get(transactions.getFirst().getPaymentType());
         Map<String, TransactionEvaluationEntity> transactionEvaluations = new HashMap<>();
-
+        validateActiveDevice();
         transactions.forEach(transaction -> {
 
             evaluatorsList.forEach(iEvaluator -> iEvaluator.isPossibleFraud(transaction, transactionEvaluations));
@@ -55,8 +55,6 @@ public class FraudService {
     }
 
     private void calculateAndSaveRiskScore(Transaction transaction, Map<String, TransactionEvaluationEntity> transactionEvaluations) {
-        validateActiveDevice();
-
         int riskScore = 0;
         //Make it weighted and configurable
         for (TransactionEvaluationEntity transactionEvaluationEntity : transactionEvaluations.values()) {
@@ -67,6 +65,7 @@ public class FraudService {
         TransactionEntity transactionEntity = TransactionEntity.builder()
                 .sourceAccount(transaction.getSourceAccountNumber())
                 .amount(transaction.getAmount())
+                .customerId(userContext.getCustomerId())
                 .deviceId(userContext.getDeviceId())
                 .branchCode(transaction.getBranchCode())
                 .accountNumber(transaction.getBeneficiaryAccount())
@@ -85,11 +84,10 @@ public class FraudService {
             throw new RuntimeException("no active Device found for user");
         }
 
-        if (deviceEntity.get().getId() != userContext.getDeviceId()) {
+        if (!deviceEntity.get().getId().equals(userContext.getDeviceId())) {
             throw new RuntimeException("no active Device found for user");
         }
     }
-
 
 }
 

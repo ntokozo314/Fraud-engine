@@ -50,7 +50,7 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: local
-      FRAUD_JDBC_URL: jdbc:postgresql://fraud_engine:5432/fraud_db
+      FRAUD_JDBC_URL: jdbc:postgresql://fraud_db:5432/fraud_db
       FRAUD_DB_USERNAME: fraud_engine
       FRAUD_DB_PASSWORD: g2lY<o?l'p[pJg8b[\3;vp2X%~(
 

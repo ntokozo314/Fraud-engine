@@ -2,10 +2,10 @@ package com.example.fraudEngine.service;
 
 import com.example.fraudEngine.controller.model.AuditRequest;
 import com.example.fraudEngine.controller.model.AuditResponse;
-import com.example.fraudEngine.persistence.frauddb.entity.CustomerEntity;
+import com.example.fraudEngine.persistence.userdb.entity.CustomerEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.FraudReevaluationEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEntity;
-import com.example.fraudEngine.persistence.frauddb.repository.CustomerRepository;
+import com.example.fraudEngine.persistence.userdb.repository.CustomerRepository;
 import com.example.fraudEngine.persistence.frauddb.repository.FraudReevaluationRepository;
 import com.example.fraudEngine.persistence.frauddb.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;

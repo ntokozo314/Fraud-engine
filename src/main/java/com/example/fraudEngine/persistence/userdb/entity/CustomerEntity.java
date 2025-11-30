@@ -1,9 +1,8 @@
-package com.example.fraudEngine.persistence.frauddb.entity;
+package com.example.fraudEngine.persistence.userdb.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -20,7 +19,4 @@ public class CustomerEntity {
     private String username;
     private String nationalId;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerId")
-    private List<TransactionEntity> transactions;
 }

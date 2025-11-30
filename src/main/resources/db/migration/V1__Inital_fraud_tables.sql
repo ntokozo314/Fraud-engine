@@ -4,14 +4,10 @@ CREATE TABLE bad_beneficiary (
     account_number VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE customer (
-    customer_id UUID PRIMARY KEY,
-    username VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE transaction (
     transaction_id UUID PRIMARY KEY,
-    customer_id UUID,
+    customer_id UUID NOT NULL,
     device_id UUID,
     source_account VARCHAR(50) NOT NULL,
     amount DECIMAL NOT NULL,
@@ -20,7 +16,8 @@ CREATE TABLE transaction (
     risk_score INTEGER CHECK (risk_score BETWEEN 1 AND 100),
     payment_type VARCHAR(32),
     created_at TIMESTAMP NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    blocked boolean,
+    reason VARCHAR(32)
 );
 
 CREATE TABLE transaction_evaluation(

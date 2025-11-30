@@ -18,6 +18,7 @@ import java.util.Optional;
 public class BadBeneficiaryEvaluator extends AbstractEvaluator {
 
     private final BadBeneficiaryRepository badBeneficiaryRepository;
+    private final BadBeneficiaryProperties badBeneficiaryProperties;
 
     @Override
     public void isPossibleFraud(Transaction data, Map<String, TransactionEvaluationEntity> evaluations) {
@@ -27,13 +28,14 @@ public class BadBeneficiaryEvaluator extends AbstractEvaluator {
         Optional<BadBeneficiaryEntity> badBeneficiary =  badBeneficiaryRepository.findByAccountNumberAndBranchCode(beneficiaryData.getAccountNumber(), beneficiaryData.getBranchCode());
         String reason;
         int riskScore;
+        BadBeneficiaryProperties.RiskProfile riskProfile = badBeneficiaryProperties.getTransactions().get(data.getPaymentType().name());
         if (badBeneficiary.isPresent()) {
             log.warn("Tried to make payment to an account flagged as a bad beneficiary {}", beneficiaryData.getAccountNumber());
             reason = String.format("Beneficiary [branchCode: %s, accountNumber: %s] is a bad beneficiary", beneficiaryData.getBranchCode(), beneficiaryData.getAccountNumber());
-            riskScore = 1;
+            riskScore = riskProfile.getBadBeneficiary();
         } else {
             reason = String.format("Beneficiary [branchCode: %s, accountNumber: %s] is a valid beneficiary", beneficiaryData.getBranchCode(), beneficiaryData.getAccountNumber());
-            riskScore = 100;
+            riskScore = riskProfile.getNormalBeneficiary();
         }
 
         TransactionEvaluationEntity evaluationEntity = TransactionEvaluationEntity.builder()

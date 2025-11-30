@@ -20,6 +20,7 @@ public class FingerPrintingEvaluator extends AbstractEvaluator {
 
     private final TransactionRepository transactionRepository;
     private final UserContext userContext;
+    private final FingerPrintingProperties fingerPrintingProperties;
 
     @Override
     public void isPossibleFraud(Transaction transactionData, Map<String, TransactionEvaluationEntity> evaluations) {
@@ -27,11 +28,12 @@ public class FingerPrintingEvaluator extends AbstractEvaluator {
 
         int riskScore;
         String reason;
+        FingerPrintingProperties.RiskProfile riskProfile = fingerPrintingProperties.getTransactions().get(transactionData.getPaymentType().name());
         if (transaction.isEmpty() || !transaction.get().getDeviceId().equals(userContext.getDeviceId())) {
-            riskScore = 100;
+            riskScore = riskProfile.getNewDevice();
             reason = "New device processing transaction";
         } else {
-            riskScore = 1;
+            riskScore = riskProfile.getExistingDevice();
             reason = "Existing device processing transaction";
         }
 
@@ -41,6 +43,7 @@ public class FingerPrintingEvaluator extends AbstractEvaluator {
                 .riskScore(riskScore)
                 .build();
 
+        evaluations.put(beanName, evaluationEntity);
     }
 
 }

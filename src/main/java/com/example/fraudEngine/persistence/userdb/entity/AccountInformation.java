@@ -19,7 +19,7 @@ public class AccountInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String userId;
+    private UUID userId;
     private String accountNumber;
     private BigDecimal balance;
 

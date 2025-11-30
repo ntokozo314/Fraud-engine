@@ -1,6 +1,6 @@
-package com.example.fraudEngine.persistence.frauddb.repository;
+package com.example.fraudEngine.persistence.userdb.repository;
 
-import com.example.fraudEngine.persistence.frauddb.entity.CustomerEntity;
+import com.example.fraudEngine.persistence.userdb.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

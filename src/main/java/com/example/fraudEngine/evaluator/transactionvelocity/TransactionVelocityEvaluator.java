@@ -3,12 +3,11 @@ package com.example.fraudEngine.evaluator.transactionvelocity;
 import com.example.fraudEngine.controller.model.Transaction;
 import com.example.fraudEngine.evaluator.AbstractEvaluator;
 import com.example.fraudEngine.evaluator.EvaluatorErrorCodes;
-import com.example.fraudEngine.persistence.frauddb.entity.CustomerEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEntity;
 import com.example.fraudEngine.persistence.frauddb.entity.TransactionEvaluationEntity;
-import com.example.fraudEngine.persistence.frauddb.repository.CustomerRepository;
 import com.example.fraudEngine.persistence.frauddb.repository.TransactionRepository;
 import com.example.fraudEngine.persistence.userdb.repository.AccountRepository;
+import com.example.fraudEngine.utils.UserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -20,21 +19,28 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @Service("TRANSACTION_VELOCITY")
 @RequiredArgsConstructor
-public class TransactionVelocityEvaluator extends AbstractEvaluator { // %/min
+public class TransactionVelocityEvaluator extends AbstractEvaluator {
 
-    private final CustomerRepository customerRepository;
     private final TransactionRepository transactionRepository;
     private final AccountRepository accountRepository;
+    private final UserContext userContext;
 
     @Override
     public void isPossibleFraud(Transaction transactionData, Map<String, TransactionEvaluationEntity> evaluations) {
-        Optional<CustomerEntity> customer = customerRepository.findByUsername(transactionData.getUsername());
-        if (customer.isEmpty()) {
+
+        // Make the number of transaction configurable
+        Pageable pageable = PageRequest.of(
+                0,
+                5,
+                Sort.by("createdAt").descending()
+        );
+
+        List<TransactionEntity> transactions = transactionRepository.findByCustomerIdOrderByCreatedAtAsc(userContext.getCustomerId(),  pageable);
+        if (transactions.isEmpty()) {
             TransactionEvaluationEntity evaluationEntity = TransactionEvaluationEntity.builder()
                     .evaluatorName(beanName)
                     .reason("User does not exist")
@@ -44,15 +50,6 @@ public class TransactionVelocityEvaluator extends AbstractEvaluator { // %/min
             evaluations.put(beanName, evaluationEntity);
             return;
         }
-
-        // Make the number of transaction configurable
-        Pageable pageable = PageRequest.of(
-                0,
-                5,
-                Sort.by("createdAt").descending()
-        );
-
-        List<TransactionEntity> transactions = transactionRepository.findByCustomerIdOrderByCreatedAtAsc(customer.get().getCustomerId(),  pageable);
         BigDecimal initialBalance = accountRepository.findFirstByCreatedAtAfterOrderByCreatedAtAsc(transactions.getFirst().getCreatedAt()).get().getBalance();
 
         BigDecimal totalTransactionAmount = BigDecimal.ZERO;

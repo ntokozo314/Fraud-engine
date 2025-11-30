@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 
 @Data
 public class Transaction implements iBadBeneficiary, iAccountDrain {
-    private String username;
     private String sourceAccount;
     private BigDecimal amount;
     private String branchCode;

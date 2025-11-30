@@ -1,5 +1,8 @@
-DEVICE_FINGERPRINT:
-  base: 0.5
+device-fingerprint:
   transactions:
-    ONCE_OFF: 100
-    BENEFICIARY: 40
+    ONCE_OFF:
+      new-device: 90
+      existingDevice: 10
+    BENEFICIARY:
+      new-device: 80
+      existingDevice: 5

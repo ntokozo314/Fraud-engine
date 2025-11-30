@@ -3,7 +3,10 @@ spring:
     init:
       mode: always
   config:
-    import: classpath:EvaluatorProperties/account-drain.yml
+    import:
+      - classpath:EvaluatorProperties/account-drain.yml
+      - classpath:EvaluatorProperties/bad-beneficiary.yml
+      - classpath:EvaluatorProperties/device-finger.yml
 
   flyway:
     enabled: false
