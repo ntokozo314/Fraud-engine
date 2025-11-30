@@ -6,7 +6,7 @@ CREATE TABLE bad_beneficiary (
 
 CREATE TABLE customer (
     customer_id UUID PRIMARY KEY,
-    user_name VARCHAR(50) NOT NULL
+    username VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE transaction (

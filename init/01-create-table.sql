@@ -6,9 +6,9 @@ CREATE TABLE account(
 );
 
 
-CREATE TABLE customer_device (
+CREATE TABLE customer_device(
     id UUID PRIMARY KEY,
     customer_id UUID,
     active_device BOOLEAN,
-    created_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL
 );

@@ -22,7 +22,7 @@ public class PaymentController {
 
     @PostMapping("/once-off")
     ResponseEntity<Void> onceOffPayment(@Valid @RequestBody OnceOffPayment payment,
-                                        @RequestHeader("deviceId") UUID deviceId) {
+                                        @RequestHeader(name = "deviceId", required = true) UUID deviceId) {
 
         userContext.setUserContext(deviceId,null,null);
         paymentService.onceOffPayment(payment);
@@ -31,7 +31,7 @@ public class PaymentController {
 
     @PostMapping("/beneficiary")
     ResponseEntity<Void> beneficiaryPayment(@Valid @RequestBody BeneficiaryPayment payment,
-                                            @RequestHeader("deviceId") UUID deviceId) {
+                                            @RequestHeader(name = "deviceId", required = true) UUID deviceId) {
         userContext.setUserContext(deviceId,null,null);
         paymentService.beneficiaryPayment(payment);
         return ResponseEntity.ok().build();

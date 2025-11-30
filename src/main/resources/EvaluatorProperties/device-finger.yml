@@ -1,0 +1,5 @@
+DEVICE_FINGERPRINT:
+  base: 0.5
+  transactions:
+    ONCE_OFF: 100
+    BENEFICIARY: 40
