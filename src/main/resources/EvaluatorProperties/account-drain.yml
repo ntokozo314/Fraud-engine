@@ -1,7 +1,7 @@
 account-drain:
   transactions:
     ONCE_OFF:
-      - threshold: 0.3
+      - threshold: 0
         riskScore: 10
         riskLevel: LOW
 
@@ -22,6 +22,6 @@ account-drain:
         riskScore: 60
         riskLevel: MEDIUM
 
-      - threshold: 0.3
+      - threshold: 0
         riskScore: 10
         riskLevel: LOW

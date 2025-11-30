@@ -4,7 +4,6 @@ CREATE TABLE bad_beneficiary (
     account_number VARCHAR(50) NOT NULL
 );
 
-
 CREATE TABLE transaction (
     transaction_id UUID PRIMARY KEY,
     customer_id UUID NOT NULL,

@@ -11,5 +11,4 @@ public interface AccountRepository extends JpaRepository<AccountInformation, UUI
 
     Optional<AccountInformation> findByAccountNumber(String accountNumber);
 
-    Optional<AccountInformation> findFirstByCreatedAtAfterOrderByCreatedAtAsc(LocalDateTime dateTime);
 }
