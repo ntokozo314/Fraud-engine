@@ -1,0 +1,27 @@
+account-drain:
+  transactions:
+    ONCE_OFF:
+      - threshold: 0
+        riskScore: 10
+        riskLevel: LOW
+
+      - threshold: 0.9
+        riskScore: 90
+        riskLevel: High
+
+      - threshold: 0.7
+        riskScore: 60
+        riskLevel: MEDIUM
+
+    BENEFICIARY:
+      - threshold: 0.8
+        riskScore: 80
+        riskLevel: High
+
+      - threshold: 0.7
+        riskScore: 60
+        riskLevel: MEDIUM
+
+      - threshold: 0
+        riskScore: 10
+        riskLevel: LOW

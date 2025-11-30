@@ -20,7 +20,7 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "com.example.fraudEngine.userdb",
+        basePackages = "com.example.fraudEngine.persistence.userdb",
         entityManagerFactoryRef = "userEntityManagerFactory",
         transactionManagerRef = "userTransactionManager"
 )
@@ -43,7 +43,7 @@ public class UserDbConfiguration {
 
         return builder
                 .dataSource(dataSource)
-                .packages("com.example.fraudEngine.userdb")
+                .packages("com.example.fraudEngine.persistence.userdb")
                 .persistenceUnit("userdb")
                 .properties(properties)
                 .build();

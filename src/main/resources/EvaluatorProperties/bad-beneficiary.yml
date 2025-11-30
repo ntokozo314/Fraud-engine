@@ -1,0 +1,8 @@
+bad-beneficiary:
+  transactions:
+    ONCE_OFF:
+      bad-beneficiary: 90
+      normal-beneficiary: 10
+    BENEFICIARY:
+      bad-beneficiary: 80
+      normal-beneficiary: 5

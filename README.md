@@ -24,21 +24,19 @@ To expand the transactions the engine is capable of handling,
 
 V0.0.1-1
 Add auditing
-Add retrieval of auditing data
+
 
 
 V0.0.2
 Expanding the rules and transactions.
     new Rules:
-     Velocity Rule
-     Card MisMatch (Location-based)
-     Device fingerprinting
-     Large payment from High risk area
+     Velocity Rule last x, % over time
+     payment from High risk area 
+     Device fingerprinting (Requires expansion of user db)
     new Transactions:
      recurring payments
      future-dated payments
      bulk-payments
-     card-payments
      public-beneficiary
 
 V0.0.3
@@ -46,11 +44,11 @@ Configure both base and per transaction threshold.
 Configure both base and per transaction rules,
 
 V0.0.4
-Move from True, False to a risk score where each rule has a weighting.
+Move from True, False to a risk score where each rule has a weighting. Accomplished in v.0.0.1-1
 
 
 
-
+//Proper architectural diagram
     
 
 

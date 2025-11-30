@@ -1,9 +1,10 @@
-package com.example.fraudEngine.userdb.repository;
+package com.example.fraudEngine.persistence.userdb.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,9 +17,12 @@ import java.util.UUID;
 public class AccountInformation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String userId;
+    private UUID userId;
     private String accountNumber;
     private BigDecimal balance;
+
+    @Builder.Default()
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

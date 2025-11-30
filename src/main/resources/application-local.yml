@@ -1,8 +1,12 @@
 spring:
-
   sql:
     init:
       mode: always
+  config:
+    import:
+      - classpath:EvaluatorProperties/account-drain.yml
+      - classpath:EvaluatorProperties/bad-beneficiary.yml
+      - classpath:EvaluatorProperties/device-finger.yml
 
   flyway:
     enabled: false
@@ -32,5 +36,8 @@ spring:
 
 evaluators:
   transactions:
-    ONCE_OFF: ["ACCOUNT_DRAIN", "BAD_BENEFICIARY"]
+    ONCE_OFF: ["ACCOUNT_DRAIN", "BAD_BENEFICIARY","DEVICE_FINGERPRINT"]
     BENEFICIARY: ["BAD_BENEFICIARY"]
+
+
+
