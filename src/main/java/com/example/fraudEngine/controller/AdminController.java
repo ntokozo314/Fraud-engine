@@ -6,7 +6,6 @@ import com.example.fraudEngine.controller.model.AuditResponse;
 import com.example.fraudEngine.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +19,7 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping("/audit-trail")
-    public ResponseEntity<Page<AuditResponse>> getAuditTrail(AuditRequest auditRequest) {
+    public ResponseEntity<Page<AuditResponse>> getAuditTrail(@RequestBody AuditRequest auditRequest) {
         return ResponseEntity.ok(adminService.findUserTransactions(auditRequest));
 
     }
@@ -31,9 +30,9 @@ public class AdminController {
         return ResponseEntity.ok().build();
    }
 
-    @PutMapping("/retry-transaction/{transactionId}")
-    public ResponseEntity<Void> retryFraudulentTransaction(@PathVariable("transactionId") UUID transactionId) {
-        adminService.markAsLegitmate(transactionId);
+    @PutMapping("/legitimate-transaction/{transactionId}")
+    public ResponseEntity<Void> legitimateTransaction(@PathVariable("transactionId") UUID transactionId) {
+        adminService.markAsLegitimate(transactionId);
         return ResponseEntity.ok().build();
     }
 

@@ -12,8 +12,6 @@ import java.util.UUID;
 @Builder
 public class AuditResponse {
     private UUID transactionId;
-    private UUID customerId;
-    private UUID deviceId;
     private String sourceAccount;
     private BigDecimal amount;
     private String branchCode;
@@ -26,8 +24,6 @@ public class AuditResponse {
     public static AuditResponse fromEntity(TransactionEntity entity) {
         return AuditResponse.builder()
                 .transactionId(entity.getTransactionId())
-                .customerId(entity.getCustomerId())
-                .deviceId(entity.getDeviceId())
                 .sourceAccount(entity.getSourceAccount())
                 .amount(entity.getAmount())
                 .branchCode(entity.getBranchCode())
@@ -37,5 +33,4 @@ public class AuditResponse {
                 .createdAt(entity.getCreatedAt())
                 .build();
     }
-
 }

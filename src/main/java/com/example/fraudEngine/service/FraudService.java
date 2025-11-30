@@ -78,6 +78,7 @@ public class FraudService {
         log.info("Successfully saved transaction Risk score for transaction");
     }
 
+
     private void validateActiveDevice() {
         Optional<DeviceEntity> deviceEntity = deviceRepository.findByCustomerIdAndActiveDeviceIsTrue(userContext.getCustomerId());
         if (deviceEntity.isEmpty()) {

@@ -1,12 +1,14 @@
 package com.example.fraudEngine.controller.model;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuditRequest {
     private String nationalId;
     private LocalDate startDate;

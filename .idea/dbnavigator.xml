@@ -44,6 +44,7 @@
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/src/main/resources/db/migration/V1__Inital_fraud_tables.sql" connection-id="bb0edc49-825f-4414-88b5-11fae354b016" session-id="MAIN" current-schema="fraud" />
+    <mapping file-url="file://$PROJECT_DIR$/init/02-seed-table.sql" connection-id="bb0edc49-825f-4414-88b5-11fae354b016" session-id="MAIN" current-schema="fraud" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

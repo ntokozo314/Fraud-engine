@@ -17,5 +17,5 @@ CREATE TABLE customer_device(
 CREATE TABLE customer(
     customer_id UUID PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    nationalId VARCHAR(16)
+    national_id VARCHAR(16)
 );

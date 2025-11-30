@@ -34,8 +34,8 @@ public class AdminService {
 
         Page<TransactionEntity> transactionEntities = transactionRepository.findByCustomerIdAndCreatedAtBetween(
                                                                                         customer.getCustomerId(),
-                                                                                        auditRequest.getStartDate(),
-                                                                                        auditRequest.getStartDate(),
+                                                                                        auditRequest.getStartDate().atStartOfDay(),
+                                                                                        auditRequest.getEndDate().plusDays(1).atStartOfDay().minusNanos(1),
                                                                                         pageable);
         return transactionEntities.map(AuditResponse::fromEntity);
     }
@@ -45,10 +45,6 @@ public class AdminService {
                 () -> new IllegalArgumentException("Transaction id not found")
         );
 
-        if (transactionEntity.isBlocked()) {
-            throw new IllegalStateException("Transaction was already blocked");
-        }
-
         try {
             FraudReevaluationEntity reevaluation = FraudReevaluationEntity.builder()
                     .fraudulentTransaction(true)
@@ -56,18 +52,14 @@ public class AdminService {
                     .build();
             ReevaluationRepository.save(reevaluation);
         } catch (DataIntegrityViolationException e) {
-            throw new IllegalArgumentException("Transaction was already marked as Fraudulent");
+            throw new IllegalArgumentException("Transaction was already marked as Legitimate");
         }
     }
 
-    public void markAsLegitmate(UUID transactionId) {
+    public void markAsLegitimate(UUID transactionId) {
         TransactionEntity transactionEntity = transactionRepository.findById(transactionId).orElseThrow(
                 () -> new IllegalArgumentException("Transaction id not found")
         );
-
-        if (!transactionEntity.isBlocked()) {
-            throw new IllegalStateException("Transaction was already not blocked");
-        }
 
         try {
             FraudReevaluationEntity reevaluation = FraudReevaluationEntity.builder()
