@@ -7,49 +7,23 @@ docker-compose up --build -d
 ### Stop everything
 docker-compose down -v
 
-V0.0.1 of Fraud engine, 
-simple True, False fraud engine
-Checks if you're paying a bad beneficiary
-checks if you're being drained.
-
 Core components of the fraud engine
 Evaluators, business logic for determining if a transaction is fraudulent.
 To expand the rules of the engine, Create a Class the implements the iEvaluator interface. 
+    Add any and all configuration to separate yml file, <rule-name>.yml in EvaluatorProperties in resources
     implement the new logic in the isPossibleFraud Function, 
     Add the rule to the specific Transaction in the properties under evaluators -> transactions
+    
 
 To expand the transactions the engine is capable of handling, 
     Add the new type in the PaymentType enum, 
     Add the new transaction to transactions properties and declare the necessary checks
 
-V0.0.1-1
-Add auditing
-
-
-
-V0.0.2
-Expanding the rules and transactions.
-    new Rules:
-     Velocity Rule last x, % over time
-     payment from High risk area 
-     Device fingerprinting (Requires expansion of user db)
-    new Transactions:
-     recurring payments
-     future-dated payments
-     bulk-payments
-     public-beneficiary
-
-V0.0.3
-Configure both base and per transaction threshold.
-Configure both base and per transaction rules,
-
-V0.0.4
-Move from True, False to a risk score where each rule has a weighting. Accomplished in v.0.0.1-1
-
-
-
-//Proper architectural diagram
-    
+Admin controller:
+    audit-trail: to see the transaction a user has made
+    fradulent-transaction/{transactionId} & /legitimate-transaction/{transactionId}
+        endpoints to hook into any retry mechanism in the event a transaction was misclassified.
+        This will be the main source of info when recalibrating the fraud engine
 
 
 
